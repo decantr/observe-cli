@@ -4,8 +4,14 @@
 # vcc > 2  (5V)
 # out > 33
 # gnd > 34
+
+#Imports
+
 import time
 import os
+
+# Variables
+irPin = 33
 
 # Checks
 
@@ -35,15 +41,17 @@ def takePhoto():
 
 # Program
 
+print('Binding IR Sensor on GPIO pin ' + irPin)
 sense.setmode(sense.BOARD)
-sense.setup(33,sense.IN)
-sense.add_event_detect(33,sense.RISING,callback=takePhoto)
+sense.setup(irPin,sense.IN)
+sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
 
 try:
+	print('IR Event: Sleeping')
 	while True:
 		time.sleep(1)
 except KeyboardInterrupt:
 	pass
 finally:
-	print('Shutting down program:', __name__)
+	print('Exiting...')
 	sense.cleanup()
