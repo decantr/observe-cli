@@ -32,9 +32,11 @@ except ImportError:
 	quit()
 
 # Methods
+def MOTION(irPin):
+	print('IR Event: Detected')
+	talePhoto()
 
 def takePhoto():
-	print('IR Event: Detected')
 	with picamera.PiCamera() as camera:
 		camera.capture(time.strftime('%m%d_%H:%M:%S')+'.jpg')
 		print('IR Event: Picture taken')
@@ -46,12 +48,11 @@ sense.setup(irPin,sense.IN)
 
 try:
 	print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
-	sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
+	sense.add_event_detect(irPin,sense.RISING,callback=MOTION)
 	print('IR Event: Sleeping')
-	while True:
+	while 1:
 		time.sleep(1)
 except KeyboardInterrupt:
 	pass
-finally:
 	print('Exiting...')
 	sense.cleanup()
