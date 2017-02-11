@@ -24,10 +24,9 @@ except ImportError:
 	quit()
 
 
-def main():
-	sense.setmode(sense.BOARD)
-	sense.setup(33,sense.IN)
-	sense.add_event_detect(33,sense.RISING,callback=takePhoto)
+sense.setmode(sense.BOARD)
+sense.setup(33,sense.IN)
+sense.add_event_detect(33,sense.RISING,callback=takePhoto)
 
 def takePhoto():
 	with picamera.PiCamera() as camera:
@@ -36,7 +35,8 @@ def takePhoto():
 
 
 try:
-	main()
+	while True:
+    	time.sleep(1)
 except KeyboardInterrupt:
 	pass
 finally:
