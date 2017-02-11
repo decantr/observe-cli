@@ -11,7 +11,7 @@ import time
 import os
 
 # Variables
-irPin = 40
+irPin = 33
 
 # Checks
 
@@ -32,13 +32,10 @@ except ImportError:
 	quit()
 
 # Methods
-def MOTION(irPin):
-	print('IR Event: Detected')
-	takePhoto()
-
 def takePhoto():
+	print('IR Event: Detected')
 	with picamera.PiCamera() as camera:
-		camera.capture(time.strftime('%m%d_%H:%M:%S')+'.jpg')
+		camera.capture('pics/'+time.strftime('%m%d_%H:%M:%S')+'.jpg')
 		print('IR Event: Picture taken')
 
 # Program
@@ -51,8 +48,7 @@ try:
 	GPIO.add_event_detect(irPin,GPIO.RISING,callback=MOTION)
 	print('IR Event: Sleeping')
 	while 1:
-		time.sleep(1)
+		time.sleep(4)
 except KeyboardInterrupt:
-	pass
 	print('Exiting...')
 	GPIO.cleanup()
