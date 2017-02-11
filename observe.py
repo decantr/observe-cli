@@ -11,7 +11,7 @@ import time
 import os
 
 # Variables
-irPin = 13
+irPin = 33
 
 # Checks
 
@@ -43,7 +43,7 @@ def takePhoto():
 
 # Program
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(irPin,GPIO.IN)
 
 try:
