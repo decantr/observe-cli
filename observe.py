@@ -20,7 +20,7 @@ if os.getuid() != 0:
 	quit()
 
 try:
-	import RPi.GPIO as sense
+	import RPi.GPIO as GPIO
 except ImportError:
 	print('ERROR: Please intall \'RPi.GPIO\' module')
 	quit()
@@ -43,16 +43,20 @@ def takePhoto():
 
 # Program
 
-sense.setmode(sense.BCM)
-sense.setup(irPin,sense.IN)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(irPin,GPIO.IN)
 
 try:
-	print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
-	sense.add_event_detect(irPin,sense.RISING,callback=MOTION)
-	print('IR Event: Sleeping')
-	while 1:
+	while True:
+		if GPIO.input(irPin):
+			print "Motion Detected!"
 		time.sleep(1)
+	# print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
+	# GPIO.add_event_detect(irPin,GPIO.RISING,callback=MOTION)
+	# print('IR Event: Sleeping')
+	# while 1:
+	# 	time.sleep(1)
 except KeyboardInterrupt:
 	pass
 	print('Exiting...')
-	sense.cleanup()
+	GPIO.cleanup()
