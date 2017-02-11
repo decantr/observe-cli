@@ -41,4 +41,4 @@ except KeyboardInterrupt:
 	pass
 finally:
 	print('Shutting down program:', __name__)
-	GPIO.cleanup()
+	sense.cleanup()
