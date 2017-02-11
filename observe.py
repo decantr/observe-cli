@@ -25,17 +25,19 @@ except ImportError:
 	print('ERROR: Please install \'picamera\' module')
 	quit()
 
-# Begin program
-
-sense.setmode(sense.BOARD)
-sense.setup(33,sense.IN)
-sense.add_event_detect(33,sense.RISING,callback=takePhoto)
+# Methods
 
 def takePhoto():
 	print('IR Event: Detected')
 	with picamera.PiCamera() as camera:
 		camera.capture(time.strftime('%m%d_%H:%M:%S')+'.jpg')
 		print('IR Event: Picture taken')
+
+# Program
+
+sense.setmode(sense.BOARD)
+sense.setup(33,sense.IN)
+sense.add_event_detect(33,sense.RISING,callback=takePhoto)
 
 try:
 	while True:
