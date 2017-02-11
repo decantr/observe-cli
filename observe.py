@@ -11,7 +11,7 @@ import time
 import os
 
 # Variables
-irPin = 33
+irPin = 13
 
 # Checks
 
