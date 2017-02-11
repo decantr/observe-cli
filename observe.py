@@ -45,7 +45,7 @@ sense.setmode(sense.BCM)
 sense.setup(irPin,sense.IN)
 
 try:
-	print 'IR Event: Binding IR Sensor on GPIO pin' , irPin
+	print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
 	sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
 	print('IR Event: Sleeping')
 	while True:
