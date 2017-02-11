@@ -34,7 +34,7 @@ except ImportError:
 # Methods
 def MOTION(irPin):
 	print('IR Event: Detected')
-	talePhoto()
+	takePhoto()
 
 def takePhoto():
 	with picamera.PiCamera() as camera:
