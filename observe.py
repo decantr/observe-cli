@@ -47,15 +47,11 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(irPin,GPIO.IN)
 
 try:
-	while True:
-		if GPIO.input(irPin):
-			print ("Motion Detected!")
+	print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
+	GPIO.add_event_detect(irPin,GPIO.RISING,callback=MOTION)
+	print('IR Event: Sleeping')
+	while 1:
 		time.sleep(1)
-	# print ('IR Event: Binding IR Sensor on GPIO pin' + str(irPin))
-	# GPIO.add_event_detect(irPin,GPIO.RISING,callback=MOTION)
-	# print('IR Event: Sleeping')
-	# while 1:
-	# 	time.sleep(1)
 except KeyboardInterrupt:
 	pass
 	print('Exiting...')
