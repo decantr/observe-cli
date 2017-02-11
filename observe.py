@@ -41,7 +41,7 @@ def takePhoto():
 
 # Program
 
-print('Binding IR Sensor on GPIO pin ' + irPin)
+print('Binding IR Sensor on GPIO pin ',irPin)
 sense.setmode(sense.BOARD)
 sense.setup(irPin,sense.IN)
 sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
