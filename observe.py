@@ -41,12 +41,12 @@ def takePhoto():
 
 # Program
 
-print('Binding IR Sensor on GPIO pin ',irPin)
-sense.setmode(sense.BOARD)
+sense.setmode(sense.BCM)
 sense.setup(irPin,sense.IN)
-sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
 
 try:
+	print 'IR Event: Binding IR Sensor on GPIO pin' , irPin
+	sense.add_event_detect(irPin,sense.RISING,callback=takePhoto)
 	print('IR Event: Sleeping')
 	while True:
 		time.sleep(1)
